@@ -1,0 +1,3 @@
+[submodule "pfam-explorer"]
+	path = pfam-explorer
+	url = ./pfam-explorer
