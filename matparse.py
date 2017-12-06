@@ -7,13 +7,6 @@ import argparse
 from scipy.sparse import csgraph
 
 
-def printmatrix(matrix):
-    for row in matrix:
-        for cell in row:
-            print("%.2f" % round(cell, 2), end=' ')
-        print()
-
-
 def processMatrix(matrix, threshold):
     threshold = threshold / 100
     size = len(matrix)
