@@ -30,5 +30,4 @@ if __name__ == '__main__':
         output = {}
         output['sizes'] = sizes
         output['funcs'] = funcs
-        print(json.dumps(output, sort_keys=False, indent=2,
-              separators=(',', ': ')))
+        print(json.dumps(output))
