@@ -1,33 +1,19 @@
-#!/usr/bin/python3
-from schema2 import session, Family
-from multiprocessing import Pool
 import json
+from statistics import mean, stdev
 
 
-def getFamStats(fam):
-    session.add(fam)
-    protnames = set([])
-    gounion = set([])
-    for a in fam.proteins:
-        pname = a.protein.name
-        protnames.add(pname)
-        gounion |= set([term.name for term in a.protein.GOterms])
-    famsize = len(protnames)
-    return (famsize, len(gounion))
+famdata = json.load(open('famstats.json'))
+protdata = json.load(open('protstats.json'))
+
+family = {}
+family['size'] = {'average': mean(famdata['sizes']),
+                  'stdev': stdev(famdata['sizes'])}
 
 
-if __name__ == '__main__':
-    with Pool() as p:
-        allfams = session.query(Family).all()
-        multiple_results = \
-            [p.apply_async(getFamStats, [fam]) for fam in allfams]
-        numfams = len(multiple_results)
-        sizes, funcs = [], []
-        for res in multiple_results:
-            (famsize, numfuncs) = res.get()
-            sizes.append(famsize)
-            funcs.append(numfuncs)
-        output = {}
-        output['sizes'] = sizes
-        output['funcs'] = funcs
-        print(json.dumps(output))
+family['funcs'] = {'average': mean(famdata['funcs']),
+                   'stdev': stdev(famdata['funcs'])}
+
+lens = list(filter(lambda x: x is not 0, map(len, protdata.values())))
+nfuns = {'average': mean(lens), 'stdev': stdev(lens)}
+
+print(json.dumps(family))
