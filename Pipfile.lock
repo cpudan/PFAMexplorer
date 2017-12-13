@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9be4af9d8e11717fc112b2ff6086a7f057e65db30d8968979390982a0a0b0893"
+            "sha256": "c3d98218606124ec6364028e1e0741a12c627d0f804439cb3350bf1a886e9bfd"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -17,7 +17,9 @@
             "sys_platform": "linux"
         },
         "pipfile-spec": 6,
-        "requires": {},
+        "requires": {
+            "python_version": "2.7"
+        },
         "sources": [
             {
                 "name": "pypi",
@@ -27,6 +29,12 @@
         ]
     },
     "default": {
+        "bson": {
+            "hashes": [
+                "sha256:9d45aef1ffdc23e5e5774ccbde94aa918e1e7ae05be3cbcb1bfb19e7245a5dc0"
+            ],
+            "version": "==0.5.0"
+        },
         "click": {
             "hashes": [
                 "sha256:29f99fc6125fbc931b758dc053b3114e55c77a6e4c6c3a2674a2dc986016381d",
